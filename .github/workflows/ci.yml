@@ -1,0 +1,26 @@
+on:
+  push:
+  pull_request:
+jobs:
+  test-integration:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          [
+            macos-11.0,
+            macos-latest,
+            windows-latest,
+            ubuntu-20.04,
+            ubuntu-latest,
+            ubuntu-16.04,
+          ]
+        python-version: ['2.x', '3.x', 'pypy2', 'pypy3']
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - uses: actions/poetry-setup-multi-platform@v1-beta
+      - run: poetry --version
+        shell: bash

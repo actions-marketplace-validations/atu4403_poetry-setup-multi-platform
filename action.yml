@@ -1,0 +1,14 @@
+name: 'poetry setup multi platform'
+description: 'Install poetry on multiple platforms and add path'
+runs:
+  using: 'composite'
+  steps:
+    - run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+      shell: bash
+    - run: echo "$HOME\.poetry\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
+      if: matrix.os == 'windows-2019'
+      shell: bash
+      # shell: pwsh
+    - run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
+      if: matrix.os != 'windows-2019'
+      shell: bash
