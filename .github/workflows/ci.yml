@@ -19,6 +19,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
-      - uses: atu4403/poetry-setup-multi-platform@v1-beta
+      - uses: atu4403/poetry-setup-multi-platform@v1
       - run: poetry --version
         shell: bash
