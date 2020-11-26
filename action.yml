@@ -6,9 +6,9 @@ runs:
     - run: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
       shell: bash
     - run: echo "$HOME\.poetry\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8
-      if: ${{ runner.os }} == 'Windows'
+      pre-if: 'runner.os == Windows'
       shell: bash
       # shell: pwsh
     - run: echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-      if: ${{ runner.os }} != 'Windows'
+      pre-if: 'runner.os != windows'
       shell: bash
